@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+:root {
+  --bchcLightBlue: #ccdfe8;
+  --bchcLighterBlue: #f0f8fc;
+  --bchcGray: #faf9f6;
+  --uhcBlue: #07294d;
+  --uhcBrightBlue: #006298;
+  --uhcGreenTone: #bac5b9;
+  --uhcLightBlue: #6cace4;
+  --uhcYellow: #ffc600;
+  --uhcOrange: #de7c00;
+  --uhcGray: #f3f3f3;
+  --uhcLime: #b7bf10;
+  --uhcGray2: #a7a8aa;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* Application */
+.app_container {
+  border: black solid 1px;
+  margin: 30px;
+  display: grid;
+  position: relative;
+  top: -80px;
+}
+/* Authentication */
+.auth_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  position: relative;
+  top: -100px;
+}
+
+.auth_container .auth {
+  grid-column: 2 / 3;
+  padding: 20px;
+  background-color: var(--bchcGray);
+  margin-top: 25px;
+  margin-bottom: 25px;
+}

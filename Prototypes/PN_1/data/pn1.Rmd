@@ -1,0 +1,52 @@
+---
+title: "BCHC Policy Review PN1"
+author: "Ran Li"
+date: "6/28/2021"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+library(readxl)
+library(tidyverse)
+library(reactable)
+library(htmltools)
+dfa = read_excel("Lit Review Matrix - Upstream Policies and Health Outcomes 6-28-21.xlsx")
+```
+
+<!-- Authentication Form -->
+<form id="form">
+  <label for="userName">Username:</label>
+  <input type="text" id="userName" name="userName" /><br /><br />
+  <label for="passwordUHC">Password:</label>
+  <input type="password" value="" id="passwordUHC" /><br /><br />
+  <input type="submit" value="Submit" />
+</form>
+
+
+
+<div id="prototype" style="display: none;">
+
+**Broad goal**: develop a matrix of various upstream policies and their effects on different health outcomes. Features include: 
+
+-   interactive living tool of some kind that continually updates
+-   reflect research
+-   show relationship between these policies and health outcomes
+
+
+```{r echo=FALSE}
+dfa %>%
+  slice(8,9,12) %>% 
+  reactable()
+```
+</div>
+
+
+<script src="custom.js"></script>
+
