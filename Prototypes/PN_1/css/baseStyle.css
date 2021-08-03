@@ -31,14 +31,14 @@ body {
   margin: 30px;
   display: grid;
   position: relative;
-  top: -80px;
+  top: -70px;
 }
 /* Authentication */
 .auth_container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 300px 1fr;
   position: relative;
-  top: -100px;
+  top: -70px;
 }
 
 .auth_container .auth {
@@ -47,4 +47,5 @@ body {
   background-color: var(--bchcGray);
   margin-top: 25px;
   margin-bottom: 25px;
+  border: black solid 1px;
 }

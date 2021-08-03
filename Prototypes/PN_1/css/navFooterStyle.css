@@ -16,7 +16,7 @@
   background: url('/img/home-hero-bg.jpg');
   background-size: cover;
   background-position: 50%;
-  /* padding-bottom: 100px; */
+  /* padding-bottom: 10px; */
 }
 
 /* Header Second Row row */
@@ -35,6 +35,7 @@
 }
 .BCHC_second_row .title {
   justify-self: center;
+  line-height: 38px;
   align-self: center;
   font-size: 38px;
   font-weight: 600;
