@@ -149,7 +149,7 @@ Great now we have a simulated dataset. Lets do a summary table to make sure the 
 <div style="display: grid;justify-items: center; padding-bottom: 10px;">
 <img src="legend_copy.PNG" alt=""></div>
 
-```{r echo=FALSE}
+```{r echo=FALSE, R.options = list(width = 333)}
 
 ### Transform output into table
 df_table = df_simulate_output %>% 
@@ -170,7 +170,7 @@ df_table = df_simulate_output %>%
   pivot_wider(names_from = "Outcome", values_from = Status, 
               values_fill =   "np")
 
-reactable(df_table,
+reactable(df_table %>% select(1:5,8:10),
           defaultPageSize  = 40,
           defaultColDef = colDef(
             cell = function(value) {
@@ -192,5 +192,14 @@ reactable(df_table,
           )
   )
 
+```
+
+
+
+```{r}
+library(jsonlite)
+json_sim = df_simulate_output %>% toJSON()
+write(json_sim, file = "json_sim.json")
 
 ```
+

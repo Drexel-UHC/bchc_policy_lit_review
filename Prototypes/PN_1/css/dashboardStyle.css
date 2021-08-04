@@ -1,0 +1,44 @@
+/* Navbar Stuff */
+button {
+  cursor: pointer;
+}
+hr {
+  width: 300px;
+}
+.inactive {
+  background-color: rgba(255, 255, 255, 0.55) !important;
+}
+.inactive:hover {
+  text-decoration: underline !important;
+}
+.rightMenuRL {
+  display: grid;
+  grid-gap: 5px;
+}
+
+/* Dashboard Container */
+.app_container {
+  /* border: black solid 1px; */
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 30px;
+  display: grid;
+  position: relative;
+  top: -70px;
+}
+.tabItem {
+  display: grid;
+  grid-template-rows: auto;
+  justify-items: center;
+  grid-gap: 10px;
+  padding: 30px;
+}
+
+/*  Item: Dashboard */
+
+/*  About Tab */
+
+.rowAbout {
+  display: grid;
+  justify-items: center;
+}

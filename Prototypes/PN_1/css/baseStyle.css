@@ -25,14 +25,6 @@ body {
   font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
 }
 
-/* Application */
-.app_container {
-  border: black solid 1px;
-  margin: 30px;
-  display: grid;
-  position: relative;
-  top: -70px;
-}
 /* Authentication */
 .auth_container {
   display: grid;
