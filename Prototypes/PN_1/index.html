@@ -9,19 +9,11 @@
     <link rel="stylesheet" href="css/navFooterStyle.css" />
     <link rel="stylesheet" href="css/semanti-UI-242-min.css" />
     <!-- Load c3.css -->
-    <link href="modules/c3-0.7.20/c3.css" rel="stylesheet" />
-    <script src="modules/c3-0.7.20/d3.v5.min.js" charset="utf-8"></script>
-    <script src="modules/c3-0.7.20/c3.min.js"></script>
+    <link href="css/c3.css" rel="stylesheet" />
     <script
       src="https://kit.fontawesome.com/1b24aa6cfd.js"
       crossorigin="anonymous"
     ></script>
-    <!-- <script
-      src="https://code.jquery.com/jquery-3.1.1.min.js"
-      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-      crossorigin="anonymous"
-    ></script>
-    <script src="js/semantic-UI-242-min.js"></script> -->
   </head>
 
   <body>
@@ -103,9 +95,15 @@
         <!-- Tab 1 -->
         <div class="tabItem" role="tabpanel2" aria-labelledby="dashboard">
           <div class="donutRow">
-            <div id="chart"></div>
-            <div class="donutLinks"></div>
-            <div class="donutOutcomes"></div>
+            <div class="donutRowItem">
+              <div id="donutPolicy"></div>
+            </div>
+            <div class="donutRowItem">
+              <div id="donutLinks"></div>
+            </div>
+            <div class="donutRowItem">
+              <div id="donutOutcomes"></div>
+            </div>
           </div>
         </div>
         <!-- Tab 2 -->
@@ -114,7 +112,6 @@
             <h3>About</h3>
             <hr />
           </div>
-
           <div class="rowAbout">
             <h3>Guided Tour</h3>
             <hr />
@@ -148,6 +145,7 @@
       </div>
     </div>
     <!--Footer -->
+    <div id="chart"></div>
 
     <div class="footer">
       <img
@@ -155,9 +153,12 @@
         alt="Urban Health Collaborative logo"
       />
     </div>
-
-    <!-- <script src="js/tabs.js"></script> -->
+    <!-- Load Libraries-->
+    <script src="js/d3.min.js" charset="utf-8"></script>
+    <script src="js/c3.min.js"></script>
+    <!-- Load Custom JS -->
     <script src="js/tabs-semantic.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/donuts.js"></script>
   </body>
 </html>
