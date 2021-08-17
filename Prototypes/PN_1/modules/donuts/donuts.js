@@ -1,10 +1,30 @@
-import { sampleData, makeDonutExample } from './donuts_plotterExample.js';
-import { makeDonutPolicy } from './donuts_plotterPolicy.js';
-import dataDonutPolicy from '../data/data_donut_policy.js';
-import { dataDonutLinksDefault,dataDonutLinks,} from '../data/data_donut_links.js';
-import dataDonutOutcomes from '../data/data_donut_outcomes.js';
+
+// Data Imports
+import { dataDonutPolicy,dataDonutPolicyFill} from '../data/data_donut_policy.js';
+import {dataDonutLinksDefault,dataDonutLinks,dataDonutLinksFill,} from '../data/data_donut_links.js';
+import {dataDonutOutcomes} from '../data/data_donut_outcomes.js';
+
+// Plotting function Imports
+import { makeDonut } from './donuts_plotter.js';
+
 
 // Policy
-export var donutPolicy = makeDonutPolicy('#donutPolicy', 'Policy', dataDonutPolicy);
-export var donutLinks = makeDonutPolicy('#donutLinks', 'Links', dataDonutLinksDefault);
-export var donutOutcomes = makeDonutPolicy('#donutOutcomes','Outcomes',dataDonutOutcomes);
+export var donutPolicy = makeDonut(
+  '#donutPolicy',
+  'Policy',
+  dataDonutPolicy,
+  dataDonutPolicyFill
+);
+
+
+
+export var donutLinks = makeDonut(
+  '#donutLinks',
+  'Links',
+  dataDonutLinksDefault,
+  dataDonutLinksFill
+);
+export var donutOutcomes = makeDonut('#donutOutcomes',
+  'Outcomes',
+  dataDonutOutcomes,
+  {});
