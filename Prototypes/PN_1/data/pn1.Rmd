@@ -139,6 +139,7 @@ df_simulate_output = df_n_paper %>%
   }) %>% 
   ungroup() %>% 
   select(-Grouper)
+save(df_simulate_output, file = "df_simulate_output.rdata")
 reactable(df_simulate_output)
 ```
 
@@ -197,9 +198,7 @@ reactable(df_table %>% select(1:5,8:10),
 
 
 ```{r}
-library(jsonlite)
-json_sim = df_simulate_output %>% toJSON()
-write(json_sim, file = "json_sim.json")
+
 
 ```
 

@@ -1,0 +1,1 @@
+const dataDonutOutcomes =  [["Chronic diseases",31],["Suicide",31],["Injuries (Unintentional)",24],["Infant Mortality",21],["Mental health conditions",21],["Substance use disorders",21],["Poisoning / Overdoses",20],["Life Expectancy / Premature Mortality",19],["Sexually transmitted infections",18],["Homicide",17]]; export default dataDonutOutcomes;
