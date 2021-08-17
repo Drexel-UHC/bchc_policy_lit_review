@@ -50,7 +50,7 @@
       </div>
     </div>
     <!-- Authentication Form -->
-    <div class="auth_container">
+    <div class="auth_container" style="display: none">
       <form class="ui form auth" id="form">
         <div class="field">
           <label>Password:</label>
@@ -65,27 +65,27 @@
       </form>
     </div>
     <!-- Application -->
-    <div id="app_container" class="app_container" style="display: none">
+    <div id="app_container" class="app_container">
       <!-- Navbar -->
       <div
         class="ui top attached tabular menu"
         role="tablist2"
         aria-label="Dashboard Tabs"
       >
-        <button class="item active" role="tab2" id="dashboard">
+        <button class="item active" role="tabButton" id="dashboard">
           Dashboard
         </button>
         <div class="right menu rightMenuRL">
-          <button class="item inactive" role="tab2" id="about">
+          <button class="item inactive" role="tabButton" id="about">
             About this tool
           </button>
-          <button class="item inactive" role="tab2" id="principles">
+          <button class="item inactive" role="tabButton" id="principles">
             General Principles
           </button>
-          <button class="item inactive" role="tab2" id="cats">
+          <button class="item inactive" role="tabButton" id="cats">
             Categories
           </button>
-          <button class="item inactive" role="tab2" id="sources">
+          <button class="item inactive" role="tabButton" id="sources">
             Sources and Credits
           </button>
         </div>
@@ -93,7 +93,7 @@
       <!-- Attached Segment -->
       <div class="ui bottom attached segment">
         <!-- Tab 1 -->
-        <div class="tabItem" role="tabpanel2" aria-labelledby="dashboard">
+        <div class="tabItem" role="tabContent" aria-labelledby="dashboard">
           <div class="donutRow">
             <div class="donutRowItem">
               <div id="donutPolicy"></div>
@@ -107,7 +107,7 @@
           </div>
         </div>
         <!-- Tab 2 -->
-        <div class="tabItem" role="tabpanel2" aria-labelledby="about" hidden>
+        <div class="tabItem" role="tabContent" aria-labelledby="about" hidden>
           <div class="rowAbout">
             <h3>About</h3>
             <hr />
@@ -128,18 +128,18 @@
         <!-- Tab 3 -->
         <div
           class="tabItem"
-          role="tabpanel2"
+          role="tabContent"
           aria-labelledby="principles"
           hidden
         >
           <h1>General Principles</h1>
         </div>
         <!-- Tab 4 -->
-        <div class="tabItem" role="tabpanel2" aria-labelledby="cats" hidden>
+        <div class="tabItem" role="tabContent" aria-labelledby="cats" hidden>
           <h1>Categories</h1>
         </div>
         <!-- Tab 5 -->
-        <div class="tabItem" role="tabpanel2" aria-labelledby="sources" hidden>
+        <div class="tabItem" role="tabContent" aria-labelledby="sources" hidden>
           <h1>Sources and Credits</h1>
         </div>
       </div>
@@ -154,11 +154,9 @@
       />
     </div>
     <!-- Load Libraries-->
-    <script src="js/d3.min.js" charset="utf-8"></script>
-    <script src="js/c3.min.js"></script>
+    <script src="modules/libraries/d3.min.js" charset="utf-8"></script>
+    <script src="modules/libraries/c3.min.js"></script>
     <!-- Load Custom JS -->
-    <script src="js/tabs-semantic.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/donuts.js"></script>
+    <script src="scripts.js" type="module"></script>
   </body>
 </html>
