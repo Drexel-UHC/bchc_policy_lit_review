@@ -1,5 +1,5 @@
-export function makeDonut(id, title, data, fill) {
-  c3.generate({
+export function makeDonut(id, title, data, fill, titleN, titleLabel) {
+  var chart = c3.generate({
     bindto: id,
     size: {
       height: 200,
@@ -13,31 +13,34 @@ export function makeDonut(id, title, data, fill) {
       colors: fill,
       onclick: function (d, i) {
         console.log('onclick', d, i);
+        this.select(d);
       },
       onmouseover: function (d, i) {
         console.log('onmouseover', d, i);
+         
       },
       onmouseout: function (d, i) {
         console.log('onmouseout', d, i);
       },
+      selection: {
+        enabled: true,
+      }
     },
     donut: {
       title: title,
-      width: 10,
+      width: 15,
       label: {
         show: false,
       },
       label: {
-        format: function (value, ratio, id) {
-          return d3.format('$')(value);
-        },
+        show: false,
       },
     },
   });
 
-    
+
+  // Title Text  
   var label = d3.select('text.c3-chart-arcs-title');
-  
   label.html(''); // remove existant text
   label
     .insert('tspan')

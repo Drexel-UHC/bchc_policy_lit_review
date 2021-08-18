@@ -95,7 +95,7 @@
     mutate(fill = link %>% recode("Negative"= linkRed,
                                   "Positive"= linkGreen)) %>% 
     select(link, fill)
-  array_donut_LinksFill = df_policy_fill %>% 
+  array_donut_LinksFill = df_links_fill %>% 
     pivot_wider(names_from = 1, values_from = fill) %>% 
     toJSON() 
   obj_donut_LinksFill= glue("{array_donut_LinksFill}[0]")

@@ -157,7 +157,19 @@
     <!-- Load Libraries-->
     <script src="modules/libraries/d3.min.js" charset="utf-8"></script>
     <script src="modules/libraries/c3.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
     <!-- Load Custom JS -->
     <script src="scripts.js" type="module"></script>
+    <script>
+      // With the above scripts loaded, you can call `tippy()` with a CSS
+      // selector and a `content` prop:
+      tippy(
+        '#highcharts-z2dpluj-0 > svg > g.highcharts-series-group > g.highcharts-series.highcharts-series-0.highcharts-pie-series.highcharts-tracker > path.highcharts-point.highcharts-color-0',
+        { content: 'My tooltip!' }
+      );
+    </script>
   </body>
 </html>
