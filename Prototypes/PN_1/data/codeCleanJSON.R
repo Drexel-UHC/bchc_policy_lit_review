@@ -46,10 +46,12 @@
     pivot_wider(names_from = 1, values_from = fill) %>% 
     toJSON() 
   obj_donut_PolicyFill = glue("{array_donut_PolicyFill}[0]")
-  
+  array_donut_PolicyFill_HC =df_policy_fill %>% 
+    pull(fill) %>% 
+    toJSON()  
   ## Write to JS
-  js_donut_policy_data =  toJS(array_donut_policy,"dataDonutPolicy")
-  js_donut_policy_fill = toJS(obj_donut_PolicyFill,"dataDonutPolicyFill")
+  js_donut_policy_data =  toJSExport(array_donut_policy,"dataDonutPolicy")
+  js_donut_policy_fill = toJSExport(obj_donut_PolicyFill,"dataDonutPolicyFill")
   data_donut_policy = glue_collapse(list(js_donut_policy_data,js_donut_policy_fill))
   write(data_donut_policy, file = "../modules/data/data_donut_policy.js")
   
@@ -101,9 +103,9 @@
   obj_donut_LinksFill= glue("{array_donut_LinksFill}[0]")
   
   ### Write to JS
-  js_donut_links_object = toJS(object_donut_outcomes,"dataDonutLinks")
-  js_donut_links_default = toJS(array_donut_outcomes_defaut,"dataDonutLinksDefault")  
-  js_donut_links_fill = toJS(obj_donut_LinksFill,"dataDonutLinksFill")
+  js_donut_links_object = toJSExport(object_donut_outcomes,"dataDonutLinks")
+  js_donut_links_default = toJSExport(array_donut_outcomes_defaut,"dataDonutLinksDefault")  
+  js_donut_links_fill = toJSExport(obj_donut_LinksFill,"dataDonutLinksFill")
   js_donut_links = glue_collapse(list(js_donut_links_default,js_donut_links_object,js_donut_links_fill))
   write(js_donut_links, file = "../modules/data/data_donut_links.js")
 }
@@ -117,7 +119,21 @@
   array_donut_outcomes = df_donut_outcomes %>% toJSON(dataframe = 'values')
   
   ### Write to JS
-  js_donut_outcomes_data = toJS(array_donut_outcomes,"dataDonutOutcomes")
+  js_donut_outcomes_data = toJSExport(array_donut_outcomes,"dataDonutOutcomes")
   js_donut_links = glue_collapse(list(js_donut_outcomes_data))
   write(js_donut_links, file = "../modules/data/data_donut_outcomes.js")
+}
+
+
+
+# Grid Data-----
+{
+  ### Data
+  df_grid = df_sim_raw %>% 
+    select(link, title, policy_group, policy, outcome)
+  js_grid = df_grid %>% toJSON()
+  ### Write to JS
+  js_grid_data = toJSExport(js_grid,"dataGrid")
+  write(js_grid_data, file = "../modules/data/data_grid.js")
+  
 }

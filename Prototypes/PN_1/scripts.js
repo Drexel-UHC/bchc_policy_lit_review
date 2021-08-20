@@ -1,19 +1,12 @@
 // Import Modules
 import { auth_form, authHandler } from './modules/utils/auth.js';
 import { tabButtons, handleTabClick } from './modules/utils/navTabs.js';
-import { donutPolicy, donutLinks, donutOutcomes} from './modules/donuts/donuts.js';
-
-// Import Data
-import {
-  dataDonutPolicy,
-  dataDonutPolicyFill,
-} from './modules/data/data_donut_policy.js';
-
-
-console.table(dataDonutPolicy);
-console.log(dataDonutPolicyFill);
+import * as donuts from './modules/donuts/donuts.js';
+import * as grid from './modules/grid/grid.js';
+// import { sankeyPlot } from './modules/sankey/sankey.js';
 
 // Add Event Listeners;
 auth_form.addEventListener('submit', authHandler);
-tabButtons.forEach((button) => button.addEventListener('click', handleTabClick));
-
+tabButtons.forEach((button) =>
+  button.addEventListener('click', handleTabClick)
+);

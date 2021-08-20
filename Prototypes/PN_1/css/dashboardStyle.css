@@ -43,7 +43,6 @@ hr {
   grid-gap: 40px;
 }
 .donutRowItem {
-  border: black solid 1px;
   min-width: 200px;
 }
 /*  About Tab */

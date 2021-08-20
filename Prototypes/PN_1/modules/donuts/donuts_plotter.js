@@ -1,52 +1,78 @@
-export function makeDonut(id, title, data, fill, titleN, titleLabel) {
-  var chart = c3.generate({
-    bindto: id,
-    size: {
+const linkReducer = (total, i) => total + i[1];
+const makeTitle = function (id, data) {
+  if (id == 'donutPolicy') {
+    return `<div><span class="donutTitleBigFont">${data.length}</span><br><span class = "donutTitleSmallFont">Policies</span> </div>`;
+  } else if (id == 'donutLinks') {
+    return `<div><span class="donutTitleBigFont">${data.reduce(
+      linkReducer,
+      0
+    )}</span><br><span class = "donutTitleSmallFont">Links</span> </div>`;
+  } else {
+    return `<div><span class="donutTitleBigFont">${data.length}</span><br><span class = "donutTitleSmallFont">Outcomes</span> </div>`;
+  }
+};
+
+export function makeDonutHC(id, data, fill) {
+  var chart = new Highcharts.Chart({
+    // Chart Options
+    chart: {
+      renderTo: id,
+      type: 'pie',
       height: 200,
     },
-    legend: {
-      hide: true,
+    title: {
+      text: makeTitle(id, data),
+      align: 'center',
+      verticalAlign: 'middle',
+      y: 30,
     },
-    data: {
-      columns: data,
-      type: 'donut',
-      colors: fill,
-      onclick: function (d, i) {
-        console.log('onclick', d, i);
-        this.select(d);
-      },
-      onmouseover: function (d, i) {
-        console.log('onmouseover', d, i);
-         
-      },
-      onmouseout: function (d, i) {
-        console.log('onmouseout', d, i);
-      },
-      selection: {
-        enabled: true,
-      }
+    credits: {
+      enabled: false,
     },
-    donut: {
-      title: title,
-      width: 15,
-      label: {
-        show: false,
-      },
-      label: {
-        show: false,
-      },
+    exporting: {
+      enabled: false,
     },
+    // Plot options
+    plotOptions: {
+      pie: {},
+    },
+    tooltip: {
+      useHTML: true,
+      outside: true,
+      backgroundColor: '{point.color}',
+      borderColor: '{point.color}',
+      borderWith: 0,
+      padding:0,
+      headerFormat: '',
+      pointFormat:
+        '<div class="donutTooltip" style ="background-color: {point.color};"><i class="fas fa-money-check-alt donutTooltipIcon"></i><div class = "donutTooltipName">{point.name}</div><div > <span class="donutTooltipCount">{point.y}</span> links</div> ',
+    },
+    // Series Options
+    series: [
+      {
+        data: data,
+        allowPointSelect: true,
+        borderColor: null,
+        allowPointSelect: true,
+        cursor: 'pointer',
+        colors: fill,
+        innerSize: '80%',
+        dataLabels: {
+          enabled: false,
+        },
+        states: {
+          inactive: {
+            opacity: 1,
+          },
+          hover: {
+            brightness: 0,
+            halo: {
+              opacity: 1,
+              size: 12,
+            },
+          },
+        },
+      },
+    ],
   });
-
-
-  // Title Text  
-  var label = d3.select('text.c3-chart-arcs-title');
-  label.html(''); // remove existant text
-  label
-    .insert('tspan')
-    .text('30')
-    .attr('dy', 0)
-    .attr('x', 0)
-    .attr('class', 'donutTitleBigFont');
-  label.insert('tspan').text('Test Data').attr('dy', 20).attr('x', 0);
 }
