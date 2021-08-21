@@ -8,10 +8,16 @@
     <link rel="stylesheet" href="css/baseStyle.css" />
     <link rel="stylesheet" href="css/dashboardStyle.css" />
     <link rel="stylesheet" href="css/navFooterStyle.css" />
-    <link rel="stylesheet" href="css/semanti-UI-242-min.css" />
+    <link rel="stylesheet" href="css/semantic.min.css" />
     <link rel="stylesheet" href="css/donut.css" />
     <link rel="stylesheet" href="css/grid.css" />
     <!-- Load Libraries-->
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"
+    ></script>
+    <script src="modules/libraries/semantic.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/sankey.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -111,8 +117,71 @@
       <div class="ui bottom attached segment">
         <!-- Tab 1 -->
         <div class="tabItem" role="tabContent" aria-labelledby="dashboard">
+          <!-- Filters -->
+
+          <div class="filterContainer">
+            <form class="ui form">
+              <div class="filterItem">
+                <label>Filter Policy:</label>
+                <div class="field">
+                  <select
+                    class="ui fluid search dropdown"
+                    name="card[expire-month]"
+                  >
+                    <option value="All">All</option>
+                    <option value="Income">Income</option>
+                    <option value="Discrimination">Discrimination</option>
+                    <option value="Housing">Housing</option>
+                    <option value="Tax">Tax</option>
+                    <option value="Education/Childcare">
+                      Education/Childcare
+                    </option>
+                    <option value="Insurance">Insurance</option>
+                  </select>
+                </div>
+              </div>
+              <div class="filterItem">
+                <label>Filter Health Outcomes:</label>
+                <div class="field">
+                  <select
+                    class="ui fluid search dropdown"
+                    name="card[expire-month]"
+                  >
+                    <option value="All">All</option>
+                    <option value="Chronic Disease">Chronic Disease</option>
+                    <option value="Infant Mortality">Infant Mortality</option>
+                    <option value="Homicide">Homicide</option>
+                    <option value="Injuries (Unintentional)">
+                      Injuries (Unintentional)
+                    </option>
+                    <option value=" Life Expectancy / Premature Mortality">
+                      Life Expectancy / Premature Mortality
+                    </option>
+                    <option value="Mental health conditions">
+                      Mental health conditions
+                    </option>
+                    <option value="Poisoning / Overdoses">
+                      Poisoning / Overdoses
+                    </option>
+                    <option value="Sexually transmitted infections">
+                      Sexually transmitted infections
+                    </option>
+                    <option value="Substance use disorders">
+                      Substance use disorders
+                    </option>
+                    <option value="Suicide">Suicide</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+            <button class="ui button">
+              <i class="fas fa-redo"></i>
+              Remove Filters
+            </button>
+          </div>
+          <h3 class="ui dividing header">Links Identified</h3>
+
           <!-- Donut -->
-          Filters
           <div class="donutRow">
             <div class="donutRowItem">
               <div id="donutPolicy"></div>
@@ -125,7 +194,6 @@
             </div>
           </div>
           <!-- Table -->
-          Links identified
           <div class="tableRow">
             <div
               id="myGrid"
