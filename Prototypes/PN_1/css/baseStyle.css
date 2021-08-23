@@ -42,3 +42,46 @@ body {
   margin-bottom: 25px;
   border: black solid 1px;
 }
+
+/* About */
+.twoColText {
+  padding: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: justify;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 50px;
+}
+
+.aboutTourBtn {
+  padding: 15px;
+  margin: 10px;
+  background-color: var(--uhcBlue);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.additionalResourcesContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  color: white;
+  grid-gap: 50px;
+}
+.additionalResourcesContainer .fas {
+  font-size: 40px;
+}
+.additionalResourcesItem {
+  background-color: var(--uhcBrightBlue);
+  display: grid;
+  grid-auto-flow: row;
+  justify-items: center;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.additionalResourcesItem:hover {
+  background-color: var(--uhcBlue);
+  cursor: pointer;
+}

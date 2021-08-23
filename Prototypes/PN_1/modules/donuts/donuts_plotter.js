@@ -53,9 +53,8 @@ export function makeDonutHC(id, data, fill) {
     series: [
       {
         data: data,
-        allowPointSelect: true,
+        allowPointSelect: id !== 'donutLinks',
         borderColor: null,
-        allowPointSelect: true,
         cursor: 'pointer',
         colors: fill,
         innerSize: '80%',
@@ -65,25 +64,28 @@ export function makeDonutHC(id, data, fill) {
         point: {
           events: {
             select: function () {
-              console.log('DONUT SELECTTTTT');
-              console.log(this.name);
-              console.log(this.color);
-              placeHolder.style.display = 'none';
-              // Remove previous filter of same class
-              const existing_filterHTML = fitlerRowElement.querySelector(`.${id}`);
-              if (existing_filterHTML) {
-                existing_filterHTML.remove();
-              }
-              // Create Filter HTML and append to doc
-              var myHTML = `
+              if (id !== 'donutLinks') {
+                // Remove place-holder text
+                placeHolder.style.display = 'none';
+                // Remove previous filter of same class
+                const existing_filterHTML = fitlerRowElement.querySelector(
+                  `.${id}`
+                );
+                if (existing_filterHTML) {
+                  existing_filterHTML.remove();
+                }
+                // Create Filter HTML
+                var myHTML = `
   <div class="filterHTML ${id}" id = "filterHTML_${this.name}" style = " border-bottom-color: ${this.color};" >
     ${this.name} <i class="fas fa-times-circle cancleFilterBtn"></i>
   </div>
 `;
-              const myFragment = document
-                .createRange()
-                .createContextualFragment(myHTML);
-              fitlerRowElement.appendChild(myFragment);
+                // Append to DOM
+                const myFragment = document
+                  .createRange()
+                  .createContextualFragment(myHTML);
+                fitlerRowElement.appendChild(myFragment);
+              }
             },
           },
         },
