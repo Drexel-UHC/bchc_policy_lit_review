@@ -17,13 +17,3 @@ var globalPolicy ="All";
 
 
 // turn a string into a DOM element
-const fitlerRowElement = document.querySelector('.filterRowContainer');
-const placeHolder = fitlerRowElement.querySelector('#placeholder');
-placeHolder.style.display = "none";
-var myHTML = `
-  <div class="filterHTML" id = "filterHTML_Label" >
-    Label <i class="fas fa-times-circle cancleFilterBtn"></i>
-  </div>
-`;
-const myFragment = document.createRange().createContextualFragment(myHTML);
-fitlerRowElement.appendChild(myFragment);
