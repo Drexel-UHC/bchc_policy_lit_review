@@ -3,10 +3,27 @@ import { auth_form, authHandler } from './modules/utils/auth.js';
 import { tabButtons, handleTabClick } from './modules/utils/navTabs.js';
 import * as donuts from './modules/donuts/donuts.js';
 import * as grid from './modules/grid/grid.js';
-// import { sankeyPlot } from './modules/sankey/sankey.js';
+import * as policy from './modules/utils/policyHanders.js';
 
-// Add Event Listeners;
+// Auth/Navigation Event Listeners;
 auth_form.addEventListener('submit', authHandler);
 tabButtons.forEach((button) =>
   button.addEventListener('click', handleTabClick)
 );
+
+
+// Events for inputs 
+var globalPolicy ="All";
+
+
+// turn a string into a DOM element
+const fitlerRowElement = document.querySelector('.filterRowContainer');
+const placeHolder = fitlerRowElement.querySelector('#placeholder');
+placeHolder.style.display = "none";
+var myHTML = `
+  <div class="filterHTML" id = "filterHTML_Label" >
+    Label <i class="fas fa-times-circle cancleFilterBtn"></i>
+  </div>
+`;
+const myFragment = document.createRange().createContextualFragment(myHTML);
+fitlerRowElement.appendChild(myFragment);

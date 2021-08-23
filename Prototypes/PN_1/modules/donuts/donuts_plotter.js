@@ -11,6 +11,7 @@ const makeTitle = function (id, data) {
     return `<div><span class="donutTitleBigFont">${data.length}</span><br><span class = "donutTitleSmallFont">Outcomes</span> </div>`;
   }
 };
+const fitlerRowElement = document.querySelector('.filterRowContainer');
 
 export function makeDonutHC(id, data, fill) {
   var chart = new Highcharts.Chart({
@@ -59,6 +60,17 @@ export function makeDonutHC(id, data, fill) {
         innerSize: '80%',
         dataLabels: {
           enabled: false,
+        },
+        point: {
+          events: {
+            select: function () {
+              console.log('DONUT SELECTTTTT');
+              console.log(this.colors);
+              console.log(this.name);
+
+              
+            }
+          }
         },
         states: {
           inactive: {

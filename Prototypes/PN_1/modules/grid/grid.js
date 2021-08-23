@@ -5,7 +5,7 @@ const columnDefs = [
   {
     headerName: 'Link',
     field: 'link',
-    width:100,
+    width:120,
     cellRenderer: function (params) {
       let linkBar = `<div class = "linkCellContainer"> <div class = "linkCell ${params.data.link}">1</div></div> `;
       return linkBar;

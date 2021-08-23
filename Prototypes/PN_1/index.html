@@ -119,68 +119,6 @@
         <div class="tabItem" role="tabContent" aria-labelledby="dashboard">
           <!-- Filters -->
 
-          <div class="filterContainer">
-            <form class="ui form">
-              <div class="filterItem">
-                <label>Filter Policy:</label>
-                <div class="field">
-                  <select
-                    class="ui fluid search dropdown"
-                    name="card[expire-month]"
-                  >
-                    <option value="All">All</option>
-                    <option value="Income">Income</option>
-                    <option value="Discrimination">Discrimination</option>
-                    <option value="Housing">Housing</option>
-                    <option value="Tax">Tax</option>
-                    <option value="Education/Childcare">
-                      Education/Childcare
-                    </option>
-                    <option value="Insurance">Insurance</option>
-                  </select>
-                </div>
-              </div>
-              <div class="filterItem">
-                <label>Filter Health Outcomes:</label>
-                <div class="field">
-                  <select
-                    class="ui fluid search dropdown"
-                    name="card[expire-month]"
-                  >
-                    <option value="All">All</option>
-                    <option value="Chronic Disease">Chronic Disease</option>
-                    <option value="Infant Mortality">Infant Mortality</option>
-                    <option value="Homicide">Homicide</option>
-                    <option value="Injuries (Unintentional)">
-                      Injuries (Unintentional)
-                    </option>
-                    <option value=" Life Expectancy / Premature Mortality">
-                      Life Expectancy / Premature Mortality
-                    </option>
-                    <option value="Mental health conditions">
-                      Mental health conditions
-                    </option>
-                    <option value="Poisoning / Overdoses">
-                      Poisoning / Overdoses
-                    </option>
-                    <option value="Sexually transmitted infections">
-                      Sexually transmitted infections
-                    </option>
-                    <option value="Substance use disorders">
-                      Substance use disorders
-                    </option>
-                    <option value="Suicide">Suicide</option>
-                  </select>
-                </div>
-              </div>
-            </form>
-            <button class="ui button">
-              <i class="fas fa-redo"></i>
-              Remove Filters
-            </button>
-          </div>
-          <h3 class="ui dividing header">Links Identified</h3>
-
           <!-- Donut -->
           <div class="donutRow">
             <div class="donutRowItem">
@@ -191,6 +129,16 @@
             </div>
             <div class="donutRowItem">
               <div id="donutOutcomes"></div>
+            </div>
+          </div>
+
+          <!-- Filter Row -->
+          <div class="filterRowContainer">
+            <div class="label">
+              Filters:
+              <span id="placeholder">
+                Click on any Sector or Goal to apply filters
+              </span>
             </div>
           </div>
           <!-- Table -->
