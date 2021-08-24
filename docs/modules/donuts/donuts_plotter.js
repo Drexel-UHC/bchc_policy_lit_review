@@ -1,18 +1,30 @@
+import {
+  renderFilterRow,
+  clearFilterRow,
+  clearAllFilters,
+  fitlerRowElement,
+  placeHolder,
+} from './donuts_render_filterRow.js';
+import {
+  animationDuration,
+  frameDuration,
+  totalFrames,
+  animateCountTo,
+} from './donuts_count_animator.js';
+
 const linkReducer = (total, i) => total + i[1];
 const makeTitle = function (id, data) {
   if (id == 'donutPolicy') {
-    return `<div><span class="donutTitleBigFont">${data.length}</span><br><span class = "donutTitleSmallFont">Policies</span> </div>`;
+    return `<div><span class="donutTitleBigFont" id = "${id}Counter">${data.length}</span><br><span class = "donutTitleSmallFont">Policies</span> </div>`;
   } else if (id == 'donutLinks') {
-    return `<div><span class="donutTitleBigFont">${data.reduce(
+    return `<div><span class="donutTitleBigFont" id = "${id}Counter">${data.reduce(
       linkReducer,
       0
     )}</span><br><span class = "donutTitleSmallFont">Links</span> </div>`;
   } else {
-    return `<div><span class="donutTitleBigFont">${data.length}</span><br><span class = "donutTitleSmallFont">Outcomes</span> </div>`;
+    return `<div><span class="donutTitleBigFont" id = "${id}Counter">${data.length}</span><br><span class = "donutTitleSmallFont">Outcomes</span> </div>`;
   }
 };
-const fitlerRowElement = document.querySelector('.filterRowContainer');
-const placeHolder = fitlerRowElement.querySelector('#placeholder');
 
 export function makeDonutHC(id, data, fill) {
   var chart = new Highcharts.Chart({
@@ -63,28 +75,18 @@ export function makeDonutHC(id, data, fill) {
         },
         point: {
           events: {
-            select: function () {
-              if (id !== 'donutLinks') {
-                // Remove place-holder text
-                placeHolder.style.display = 'none';
-                // Remove previous filter of same class
-                const existing_filterHTML = fitlerRowElement.querySelector(
-                  `.${id}`
-                );
-                if (existing_filterHTML) {
-                  existing_filterHTML.remove();
+            click: function () {
+              console.log(event.point);
+              if (!event.point.selected) {
+                // Select: If we clicked on a point that was not previously clicked
+                animateCountTo(id, 1);
+                if (id !== 'donutLinks') {
+                  renderFilterRow(this, id);
                 }
-                // Create Filter HTML
-                var myHTML = `
-  <div class="filterHTML ${id}" id = "filterHTML_${this.name}" style = " border-bottom-color: ${this.color};" >
-    ${this.name} <i class="fas fa-times-circle cancleFilterBtn"></i>
-  </div>
-`;
-                // Append to DOM
-                const myFragment = document
-                  .createRange()
-                  .createContextualFragment(myHTML);
-                fitlerRowElement.appendChild(myFragment);
+              } else {
+                // Unselect: If we clicked on a point that was already selected
+                animateCountTo(id, data.length);
+                clearFilterRow(id);
               }
             },
           },
@@ -104,4 +106,6 @@ export function makeDonutHC(id, data, fill) {
       },
     ],
   });
+
+  return chart;
 }

@@ -1,5 +1,4 @@
 import { dataGrid } from '../data/data_grid.js';
-console.table(dataGrid);
 // Definte Columns
 const columnDefs = [
   {

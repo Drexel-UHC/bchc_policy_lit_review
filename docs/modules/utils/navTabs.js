@@ -8,7 +8,6 @@ const tabPanels = Array.from(
 );
 
 export function handleTabClick(event) {
-  console.log('CCLICKED SEMANTIC BUTTON!');
   // hide all tab panels
   tabPanels.forEach((panel) => {
     panel.hidden = true;
@@ -17,8 +16,6 @@ export function handleTabClick(event) {
   // mark all tabs as unselected
   tabButtons.forEach((tab) => {
     // tab.ariaSelected = false;
-    console.log('unselect');
-    console.log(tab);
     tab.classList.remove('active');
     tab.classList.add('inactive');
   });
