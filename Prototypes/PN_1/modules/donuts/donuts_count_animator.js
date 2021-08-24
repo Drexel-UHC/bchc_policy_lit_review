@@ -1,6 +1,6 @@
 // Counter: https://codepen.io/jshakes/pen/KKpjdYv
 // How long you want the animation to take, in ms
-export const animationDuration = 1500;
+export const animationDuration = 1000;
 // Calculate how long each ‘frame’ should last if we want to update the animation 60 times per second
 export const frameDuration = 1000 / 60;
 // Use that to calculate how many frames we need to complete the animation

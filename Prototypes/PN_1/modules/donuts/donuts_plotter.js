@@ -1,7 +1,9 @@
 import {
   renderFilterRow,
+  clearFilterRow,
+  clearAllFilters,
   fitlerRowElement,
-  placeHolder
+  placeHolder,
 } from './donuts_render_filterRow.js';
 import {
   animationDuration,
@@ -23,7 +25,6 @@ const makeTitle = function (id, data) {
     return `<div><span class="donutTitleBigFont" id = "${id}Counter">${data.length}</span><br><span class = "donutTitleSmallFont">Outcomes</span> </div>`;
   }
 };
-
 
 export function makeDonutHC(id, data, fill) {
   var chart = new Highcharts.Chart({
@@ -47,7 +48,46 @@ export function makeDonutHC(id, data, fill) {
     },
     // Plot options
     plotOptions: {
-      pie: {},
+      pie: {
+        borderColor: null,
+        allowPointSelect: id !== 'donutLinks',
+        cursor: 'pointer',
+        colors: fill,
+        innerSize: '80%',
+        dataLabels: {
+          enabled: false,
+        },
+        point: {
+          events: {
+            click: function () {
+              console.log(event.point);
+              if (!event.point.selected) {
+                // Select: If we clicked on a point that was not previously clicked
+                animateCountTo(id, 1);
+                if (id !== 'donutLinks') {
+                  renderFilterRow(this, id);
+                }
+              } else {
+                // Unselect: If we clicked on a point that was already selected
+                animateCountTo(id, data.length);
+                clearFilterRow(id);
+              }
+            },
+          },
+        },
+        states: {
+          inactive: {
+            opacity: 1,
+          },
+          hover: {
+            brightness: 0,
+            halo: {
+              opacity: 1,
+              size: 12,
+            },
+          },
+        },
+      },
     },
     tooltip: {
       useHTML: true,
@@ -64,40 +104,9 @@ export function makeDonutHC(id, data, fill) {
     series: [
       {
         data: data,
-        allowPointSelect: id !== 'donutLinks',
-        borderColor: null,
-        cursor: 'pointer',
-        colors: fill,
-        innerSize: '80%',
-        dataLabels: {
-          enabled: false,
-        },
-        point: {
-          events: {
-            select: function () {
-              animateCountTo(id, 1); 
-              if (id !== 'donutLinks') {
-                renderFilterRow(this, id);
-              }
-            },
-            unselect: function () {
-              animateCountTo(id, data.length); 
-            }
-          },
-        },
-        states: {
-          inactive: {
-            opacity: 1,
-          },
-          hover: {
-            brightness: 0,
-            halo: {
-              opacity: 1,
-              size: 12,
-            },
-          },
-        },
       },
     ],
   });
+
+  return chart;
 }

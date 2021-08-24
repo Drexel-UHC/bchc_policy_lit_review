@@ -5,14 +5,20 @@ import * as donuts from './modules/donuts/donuts.js';
 import * as grid from './modules/grid/grid.js';
 import * as policy from './modules/utils/policyHanders.js';
 
+import * as dataPolicyModule from './modules/data/data_donut_policy.js';
+import * as dataLinksModule from './modules/data/data_donut_links.js';
+import * as dataOutcomesModule from './modules/data/data_donut_outcomes.js';
+
+
+console.log(dataPolicyModule.dataDonutPolicy);
 // HTML elements
-  
+
 // Auth/Navigation Event Listeners;
 auth_form.addEventListener('submit', authHandler);
 tabButtons.forEach((button) =>
   button.addEventListener('click', handleTabClick)
 );
- 
 
-// Events for inputs 
-var globalPolicy ="All";
+// Events for inputs
+window.policy = 'All';
+window.outcome = 'All';
