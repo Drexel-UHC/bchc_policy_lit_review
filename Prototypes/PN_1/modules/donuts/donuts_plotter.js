@@ -1,30 +1,8 @@
-import {
-  renderFilterRow,
-  clearFilterRow,
-  clearAllFilters,
-  fitlerRowElement,
-  placeHolder,
-} from './donuts_render_filterRow.js';
-import {
-  animationDuration,
-  frameDuration,
-  totalFrames,
-  animateCountTo,
-} from './donuts_count_animator.js';
-
-const linkReducer = (total, i) => total + i[1];
-const makeTitle = function (id, data) {
-  if (id == 'donutPolicy') {
-    return `<div><span class="donutTitleBigFont" id = "${id}Counter">${data.length}</span><br><span class = "donutTitleSmallFont">Policies</span> </div>`;
-  } else if (id == 'donutLinks') {
-    return `<div><span class="donutTitleBigFont" id = "${id}Counter">${data.reduce(
-      linkReducer,
-      0
-    )}</span><br><span class = "donutTitleSmallFont">Links</span> </div>`;
-  } else {
-    return `<div><span class="donutTitleBigFont" id = "${id}Counter">${data.length}</span><br><span class = "donutTitleSmallFont">Outcomes</span> </div>`;
-  }
-};
+import { renderFilterRow } from './donuts_renderFilterRow.js';
+import { handleClearAll } from './donuts_handleClearAll.js';
+import { handleDeselect } from './donuts_handleDeselect.js';
+import { animateCountTo } from './donuts_count_animator.js';
+import { makeTitle } from './donuts_util.js';
 
 export function makeDonutHC(id, data, fill) {
   var chart = new Highcharts.Chart({
@@ -61,16 +39,16 @@ export function makeDonutHC(id, data, fill) {
           events: {
             click: function () {
               console.log(event.point);
-              if (!event.point.selected) {
-                // Select: If we clicked on a point that was not previously clicked
-                animateCountTo(id, 1);
+              const selectEvent = !event.point.selected;
+              const deselectEvent = !selectEvent;
+              if (selectEvent) {
                 if (id !== 'donutLinks') {
+                  animateCountTo(id, 1);
                   renderFilterRow(this, id);
                 }
-              } else {
-                // Unselect: If we clicked on a point that was already selected
+              } else if (deselectEvent) {
                 animateCountTo(id, data.length);
-                clearFilterRow(id);
+                handleDeselect(id);
               }
             },
           },
@@ -107,6 +85,5 @@ export function makeDonutHC(id, data, fill) {
       },
     ],
   });
-
   return chart;
 }
