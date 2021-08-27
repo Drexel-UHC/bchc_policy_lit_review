@@ -1,14 +1,20 @@
 import { handleClearAll } from './donuts_handleClearAll.js';
-import { handleDeselect } from './donuts_handleDeselect.js';
 import { animateCountTo } from './donuts_count_animator.js';
-import * as donuts from './donuts.js';
+import {
+  numOutcomes,
+  numPolicies,
+  deselectDonut,
+  updateGlobalVariables,
+  consoleLogGlobals,
+  cleanStr,
+} from './donuts_util.js';
 import { fitlerRowElement, placeHolder } from './dounts_elements.js';
+import {resetFilterRow} from './donuts_handleClearAll.js'
 
 export const renderFilterRow = function (thiss, id) {
   deleteExistingFilterTab(id);
-  updateFilterRowText();
+  updateFilterRowTextSelect();
   insertNewFilterTab(thiss, id);
-  updateGlobalVariables(thiss, id);
   insertClearAllBtn();
 };
 
@@ -20,7 +26,15 @@ const deleteExistingFilterTab = function (id) {
   }
 };
 
-const updateFilterRowText = function () {
+const updateFilterRowTextDeselect = function () {
+  const secondChild = Array.from(fitlerRowElement.children)[1];
+  if (secondChild.id == 'clearAllBtn') {
+    placeHolder.style.display = 'inline';
+    secondChild.remove();
+  }
+}
+
+const updateFilterRowTextSelect = function () {
   placeHolder.style.display = 'none';
   if (fitlerRowElement.lastElementChild.id === 'clearAllBtn') {
     fitlerRowElement.removeChild(
@@ -29,21 +43,35 @@ const updateFilterRowText = function () {
   }
 };
 
+const handleClearBtn = function () {
+  const filterTab = event.path[1];
+  const id = filterTab.classList[1];
+  const defaultNum = id === 'donutPolicy' ? numPolicies :numOutcomes ;
+  deselectDonut(id);
+  animateCountTo(id, defaultNum);
+  updateGlobalVariables(id, "All")
+  filterTab.remove();
+  consoleLogGlobals();
+  updateFilterRowTextDeselect();
+};
+
+
+
 const insertNewFilterTab = function (thiss, id) {
-  var filterHTML = `<div class="filterHTML ${id}" id = "filterHTML_${thiss.name}" style = " border-bottom-color: ${thiss.color};" >${thiss.name} <i class="fas fa-times-circle cancleFilterBtn"></i> </div>`;
+  const cleanName = cleanStr(thiss.name);
+  // Append new filterTab to DOM
+  var filterHTML = `<div class="filterHTML ${id}" id = "filterHTML_${cleanName}" style = " border-bottom-color: ${thiss.color};" >${thiss.name} <i class="fas fa-times-circle cancleFilterBtn"></i> </div>`;
   const fitlerFragment = document
     .createRange()
     .createContextualFragment(filterHTML);
   fitlerRowElement.appendChild(fitlerFragment);
+  // Add event listener for closing
+  fitlerRowElement
+    .querySelector(`#filterHTML_${cleanName}`)
+    .querySelector('.cancleFilterBtn')
+    .addEventListener('click', handleClearBtn);
 };
 
-const updateGlobalVariables = function (thiss, id) {
-  if (id === 'donutPolicy') {
-    window.policy = thiss.name;
-  } else {
-    window.outcome = thiss.name;
-  }
-};
 
 const insertClearAllBtn = function () {
   var clearHTML = `<button id = "clearAllBtn"> clear all </button>`;

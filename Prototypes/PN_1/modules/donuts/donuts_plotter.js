@@ -1,8 +1,12 @@
 import { renderFilterRow } from './donuts_renderFilterRow.js';
 import { handleClearAll } from './donuts_handleClearAll.js';
-import { handleDeselect } from './donuts_handleDeselect.js';
+import { deselectFilterRow } from './donuts_handleDeselect.js';
 import { animateCountTo } from './donuts_count_animator.js';
-import { makeTitle } from './donuts_util.js';
+import {
+  makeTitle,
+  updateGlobalVariables,
+  consoleLogGlobals,
+} from './donuts_util.js';
 
 export function makeDonutHC(id, data, fill) {
   var chart = new Highcharts.Chart({
@@ -38,17 +42,20 @@ export function makeDonutHC(id, data, fill) {
         point: {
           events: {
             click: function () {
-              console.log(event.point);
               const selectEvent = !event.point.selected;
               const deselectEvent = !selectEvent;
               if (selectEvent) {
                 if (id !== 'donutLinks') {
                   animateCountTo(id, 1);
                   renderFilterRow(this, id);
+                  updateGlobalVariables(id, this.name);
+                  consoleLogGlobals();
                 }
               } else if (deselectEvent) {
                 animateCountTo(id, data.length);
-                handleDeselect(id);
+                deselectFilterRow(id);
+                updateGlobalVariables(id, 'All');
+                consoleLogGlobals();
               }
             },
           },

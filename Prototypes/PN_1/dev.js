@@ -15,9 +15,8 @@ const newdataDonutPolicy = [
   ['Insurance', 10],
 ];
 
-const resetHC = function () {
-  // Remove all Seriesi
-  const chart = Highcharts.charts[0];
-  selectedPoints = chart.getSelectedPoints()[0];
-  chart.getSelectedPoints()[0].select(false);
-};
+
+const cleanStr = function (str) {
+  const result = str.replace(/[^A-Z0-9]/gi, '_');
+  return result;
+}

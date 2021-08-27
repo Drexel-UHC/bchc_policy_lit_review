@@ -1,24 +1,22 @@
-import * as donuts from './donuts.js';
-import {animateCountTo } from './donuts_count_animator.js';
+import { dataDonutPolicy } from '../data/data_donut_policy.js';
+import { dataDonutLinksDefault } from '../data/data_donut_links.js';
+import { dataDonutOutcomes } from '../data/data_donut_outcomes.js';
 import { fitlerRowElement, placeHolder } from './dounts_elements.js';
+import { animateCountTo } from './donuts_count_animator.js';
+import { deselectDonut, updateGlobalVariables } from './donuts_util.js';
 
 export const handleClearAll = function () {
-  resetDonuts();
+  deselectDonut('donutPolicy');
+  deselectDonut('donutOutcomes');
   resetFilterRow();
-  animateCountTo('donutPolicy', 122);
-  animateCountTo('donutOutcomes', 122);
+  animateCountTo('donutPolicy', dataDonutPolicy.length);
+  animateCountTo('donutOutcomes', dataDonutOutcomes.length);
+  updateGlobalVariables('donutPolicy', 'All');
+  updateGlobalVariables('donutOutcomes', 'All');
+  console.log(`Global Vars: ${window.policy}, ${window.outcome}`);
 };
 
-const resetDonuts = function () {
-  try {
-    donuts.donutPolicy.getSelectedPoints()[0].select(false);
-  } catch (error) {}
-  try {
-    donuts.donutOutcomes.getSelectedPoints()[0].select(false);
-  } catch (error) {}
-};
-
-const resetFilterRow = function () {
+export const resetFilterRow = function () {
   Array.from(fitlerRowElement.children).forEach((element) => {
     if (element.id !== '') {
       fitlerRowElement.removeChild(element);

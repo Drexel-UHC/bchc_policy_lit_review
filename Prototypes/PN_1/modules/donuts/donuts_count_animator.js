@@ -13,9 +13,7 @@ export const animateCountTo = function (id, target) {
   const el = document.querySelector(`#${id}Counter`);
   let startingNumber = parseInt(el.innerHTML, 10);
   const targetNumber = target;
-  console.log(el);
-  console.log(startingNumber);
-  console.log(targetNumber);
+
   const frame = Math.abs(targetNumber - startingNumber);
   var frameCounter = frame;
   if (targetNumber > startingNumber) {
