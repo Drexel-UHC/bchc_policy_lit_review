@@ -16,7 +16,3 @@ const newdataDonutPolicy = [
 ];
 
 
-const cleanStr = function (str) {
-  const result = str.replace(/[^A-Z0-9]/gi, '_');
-  return result;
-}

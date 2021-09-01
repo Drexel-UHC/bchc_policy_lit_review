@@ -7,9 +7,10 @@ import {
   updateGlobalVariables,
   consoleLogGlobals,
   cleanStr,
+  updateOpacityInactivePoints,
 } from './donuts_util.js';
 import { fitlerRowElement, placeHolder } from './dounts_elements.js';
-import {resetFilterRow} from './donuts_handleClearAll.js'
+import { resetFilterRow } from './donuts_handleClearAll.js';
 
 export const renderFilterRow = function (thiss, id) {
   deleteExistingFilterTab(id);
@@ -17,7 +18,6 @@ export const renderFilterRow = function (thiss, id) {
   insertNewFilterTab(thiss, id);
   insertClearAllBtn();
 };
-
 
 const deleteExistingFilterTab = function (id) {
   const existing_filterHTML = fitlerRowElement.querySelector(`.${id}`);
@@ -32,7 +32,7 @@ const updateFilterRowTextDeselect = function () {
     placeHolder.style.display = 'inline';
     secondChild.remove();
   }
-}
+};
 
 const updateFilterRowTextSelect = function () {
   placeHolder.style.display = 'none';
@@ -46,16 +46,15 @@ const updateFilterRowTextSelect = function () {
 const handleClearBtn = function () {
   const filterTab = event.path[1];
   const id = filterTab.classList[1];
-  const defaultNum = id === 'donutPolicy' ? numPolicies :numOutcomes ;
+  const defaultNum = id === 'donutPolicy' ? numPolicies : numOutcomes;
   deselectDonut(id);
   animateCountTo(id, defaultNum);
-  updateGlobalVariables(id, "All")
+  updateGlobalVariables(id, 'All');
   filterTab.remove();
   consoleLogGlobals();
   updateFilterRowTextDeselect();
+  updateOpacityInactivePoints(id, 'highcharts-point', 1);
 };
-
-
 
 const insertNewFilterTab = function (thiss, id) {
   const cleanName = cleanStr(thiss.name);
@@ -72,7 +71,6 @@ const insertNewFilterTab = function (thiss, id) {
     .addEventListener('click', handleClearBtn);
 };
 
-
 const insertClearAllBtn = function () {
   var clearHTML = `<button id = "clearAllBtn"> clear all </button>`;
   const clearFragment = document
@@ -82,4 +80,3 @@ const insertClearAllBtn = function () {
   // Add listener
   fitlerRowElement.lastElementChild.addEventListener('click', handleClearAll);
 };
-

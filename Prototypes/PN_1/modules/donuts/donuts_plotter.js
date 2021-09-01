@@ -6,6 +6,7 @@ import {
   makeTitle,
   updateGlobalVariables,
   consoleLogGlobals,
+  updateOpacityInactivePoints,
 } from './donuts_util.js';
 
 export function makeDonutHC(id, data, fill) {
@@ -49,12 +50,18 @@ export function makeDonutHC(id, data, fill) {
                   animateCountTo(id, 1);
                   renderFilterRow(this, id);
                   updateGlobalVariables(id, this.name);
+                  updateOpacityInactivePoints(
+                    id,
+                    'highcharts-point-inactive',
+                    0.4
+                  );
                   consoleLogGlobals();
                 }
               } else if (deselectEvent) {
                 animateCountTo(id, data.length);
                 deselectFilterRow(id);
                 updateGlobalVariables(id, 'All');
+                updateOpacityInactivePoints(id,'highcharts-point-inactive', 1);
                 consoleLogGlobals();
               }
             },
@@ -69,6 +76,12 @@ export function makeDonutHC(id, data, fill) {
             halo: {
               opacity: 1,
               size: 12,
+            },
+          },
+          select: {
+            halo: {
+              opacity: 1,
+              size: 30,
             },
           },
         },

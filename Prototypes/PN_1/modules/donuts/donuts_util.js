@@ -46,3 +46,16 @@ export const cleanStr = function (str) {
   const result = str.replace(/[^A-Z0-9]/gi, '_');
   return result;
 };
+
+export const updateOpacityInactivePoints = function (id, selector, opacity) {
+  console.log(id);
+  const otherPoints = document
+    .querySelector(`#${id}`)
+    .querySelectorAll(`.${selector}`);
+  console.log(otherPoints);
+  otherPoints.forEach((element) => {
+    element.style.opacity = opacity;
+  });
+};
+ 
+
