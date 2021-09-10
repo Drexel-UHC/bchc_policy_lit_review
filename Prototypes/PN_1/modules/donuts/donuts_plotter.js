@@ -7,6 +7,7 @@ import {
   updateGlobalVariables,
   consoleLogGlobals,
   updateOpacityInactivePoints,
+  updateLinksDonut
 } from './donuts_util.js';
 
 export function makeDonutHC(id, data, fill) {
@@ -56,13 +57,15 @@ export function makeDonutHC(id, data, fill) {
                     0.4
                   );
                   consoleLogGlobals();
+                  updateLinksDonut();
                 }
               } else if (deselectEvent) {
                 animateCountTo(id, data.length);
                 deselectFilterRow(id);
                 updateGlobalVariables(id, 'All');
-                updateOpacityInactivePoints(id,'highcharts-point-inactive', 1);
+                updateOpacityInactivePoints(id, 'highcharts-point-inactive', 1);
                 consoleLogGlobals();
+                updateLinksDonut();
               }
             },
           },
