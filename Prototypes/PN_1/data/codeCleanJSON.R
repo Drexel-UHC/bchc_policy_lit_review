@@ -61,8 +61,8 @@
 # ___ Links -----
 {
   ### Create template for all filter combinations
-  policyGroupFiltersAll = c("None",unique(xwalk_policy$policy_group))
-  outcomeFiltersAll = c("None",unique(df_sim_raw$outcome))
+  policyGroupFiltersAll = c("All",unique(xwalk_policy$policy_group))
+  outcomeFiltersAll = c("All",unique(df_sim_raw$outcome))
   template_links = tibble(policyFilter = policyGroupFiltersAll ,
                           outcomeFilter = list(outcomeFiltersAll)) %>% 
     unnest(cols = outcomeFilter)
@@ -72,9 +72,9 @@
     group_by(grouperTmp) %>% 
     group_modify(~{
       policyTmp = .x$policyFilter
-      if (policyTmp == "None"){policyTmp = unique(df_sim_raw$policy_group)}
+      if (policyTmp == "All"){policyTmp = unique(df_sim_raw$policy_group)}
       outcomeTmp = .x$outcomeFilter
-      if (outcomeTmp == "None"){outcomeTmp = unique(df_sim_raw$outcome)}
+      if (outcomeTmp == "All"){outcomeTmp = unique(df_sim_raw$outcome)}
       df_sim_raw %>% 
         filter(policy_group%in%policyTmp,
                outcome%in%outcomeTmp) %>%
@@ -85,8 +85,8 @@
     ungroup() %>% 
     select(policyGroup, outcome, link, n)
   array_donut_outcomes_defaut = df_donut_links %>% 
-    filter(policyGroup == "None",
-           outcome == "None") %>% 
+    filter(policyGroup == "All",
+           outcome == "All") %>% 
     select(link, n) %>% 
     toJSON(dataframe = 'values')
   object_donut_outcomes = df_donut_links %>% toJSON()
@@ -100,13 +100,15 @@
   array_donut_LinksFill = df_links_fill %>% 
     pivot_wider(names_from = 1, values_from = fill) %>% 
     toJSON() 
+  array_totalLinks = nrow(df_sim_raw) %>% toJSON;
   obj_donut_LinksFill= glue("{array_donut_LinksFill}[0]")
   
   ### Write to JS
   js_donut_links_object = toJSExport(object_donut_outcomes,"dataDonutLinks")
   js_donut_links_default = toJSExport(array_donut_outcomes_defaut,"dataDonutLinksDefault")  
   js_donut_links_fill = toJSExport(obj_donut_LinksFill,"dataDonutLinksFill")
-  js_donut_links = glue_collapse(list(js_donut_links_default,js_donut_links_object,js_donut_links_fill))
+  js_donut_links_totalLinks = toJSExport(array_totalLinks,"dataDonutLinksTotal")
+  js_donut_links = glue_collapse(list(js_donut_links_default,js_donut_links_object,js_donut_links_fill,js_donut_links_totalLinks))
   write(js_donut_links, file = "../modules/data/data_donut_links.js")
 }
 

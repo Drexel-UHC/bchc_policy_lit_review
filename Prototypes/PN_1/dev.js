@@ -3,6 +3,90 @@
   ['Positive', 152],
 ];
  const dataDonutLinks = [
+  { policyGroup: 'All', outcome: 'All', link: 'Negative', n: 71 },
+  { policyGroup: 'All', outcome: 'All', link: 'Positive', n: 152 },
+  { policyGroup: 'All', outcome: 'Chronic diseases', link: 'Negative', n: 9 },
+  { policyGroup: 'All', outcome: 'Chronic diseases', link: 'Positive', n: 22 },
+  { policyGroup: 'All', outcome: 'Homicide', link: 'Negative', n: 6 },
+  { policyGroup: 'All', outcome: 'Homicide', link: 'Positive', n: 11 },
+  { policyGroup: 'All', outcome: 'Infant Mortality', link: 'Negative', n: 4 },
+  { policyGroup: 'All', outcome: 'Infant Mortality', link: 'Positive', n: 17 },
+  {
+    policyGroup: 'All',
+    outcome: 'Injuries (Unintentional)',
+    link: 'Negative',
+    n: 7,
+  },
+  {
+    policyGroup: 'All',
+    outcome: 'Injuries (Unintentional)',
+    link: 'Positive',
+    n: 17,
+  },
+  {
+    policyGroup: 'All',
+    outcome: 'Life Expectancy / Premature Mortality',
+    link: 'Negative',
+    n: 9,
+  },
+  {
+    policyGroup: 'All',
+    outcome: 'Life Expectancy / Premature Mortality',
+    link: 'Positive',
+    n: 10,
+  },
+  {
+    policyGroup: 'All',
+    outcome: 'Mental health conditions',
+    link: 'Negative',
+    n: 5,
+  },
+  {
+    policyGroup: 'All',
+    outcome: 'Mental health conditions',
+    link: 'Positive',
+    n: 16,
+  },
+  {
+    policyGroup: 'All',
+    outcome: 'Poisoning / Overdoses',
+    link: 'Negative',
+    n: 4,
+  },
+  {
+    policyGroup: 'All',
+    outcome: 'Poisoning / Overdoses',
+    link: 'Positive',
+    n: 16,
+  },
+  {
+    policyGroup: 'All',
+    outcome: 'Sexually transmitted infections',
+    link: 'Negative',
+    n: 5,
+  },
+  {
+    policyGroup: 'All',
+    outcome: 'Sexually transmitted infections',
+    link: 'Positive',
+    n: 13,
+  },
+  {
+    policyGroup: 'All',
+    outcome: 'Substance use disorders',
+    link: 'Negative',
+    n: 6,
+  },
+  {
+    policyGroup: 'All',
+    outcome: 'Substance use disorders',
+    link: 'Positive',
+    n: 15,
+  },
+  { policyGroup: 'All', outcome: 'Suicide', link: 'Negative', n: 16 },
+  { policyGroup: 'All', outcome: 'Suicide', link: 'Positive', n: 15 },
+  { policyGroup: 'Discrimination', outcome: 'All', link: 'Negative', n: 26 },
+  { policyGroup: 'Discrimination', outcome: 'All', link: 'Positive', n: 21 },
   {
     policyGroup: 'Discrimination',
     outcome: 'Chronic diseases',
@@ -75,8 +159,6 @@
     link: 'Positive',
     n: 1,
   },
-  { policyGroup: 'Discrimination', outcome: 'None', link: 'Negative', n: 26 },
-  { policyGroup: 'Discrimination', outcome: 'None', link: 'Positive', n: 21 },
   {
     policyGroup: 'Discrimination',
     outcome: 'Poisoning / Overdoses',
@@ -115,6 +197,18 @@
   },
   { policyGroup: 'Discrimination', outcome: 'Suicide', link: 'Negative', n: 6 },
   { policyGroup: 'Discrimination', outcome: 'Suicide', link: 'Positive', n: 2 },
+  {
+    policyGroup: 'Education and Childcare',
+    outcome: 'All',
+    link: 'Negative',
+    n: 7,
+  },
+  {
+    policyGroup: 'Education and Childcare',
+    outcome: 'All',
+    link: 'Positive',
+    n: 23,
+  },
   {
     policyGroup: 'Education and Childcare',
     outcome: 'Chronic diseases',
@@ -165,18 +259,6 @@
   },
   {
     policyGroup: 'Education and Childcare',
-    outcome: 'None',
-    link: 'Negative',
-    n: 7,
-  },
-  {
-    policyGroup: 'Education and Childcare',
-    outcome: 'None',
-    link: 'Positive',
-    n: 23,
-  },
-  {
-    policyGroup: 'Education and Childcare',
     outcome: 'Poisoning / Overdoses',
     link: 'Negative',
     n: 2,
@@ -205,6 +287,8 @@
     link: 'Positive',
     n: 4,
   },
+  { policyGroup: 'Housing', outcome: 'All', link: 'Negative', n: 9 },
+  { policyGroup: 'Housing', outcome: 'All', link: 'Positive', n: 37 },
   {
     policyGroup: 'Housing',
     outcome: 'Chronic diseases',
@@ -267,8 +351,6 @@
     link: 'Positive',
     n: 4,
   },
-  { policyGroup: 'Housing', outcome: 'None', link: 'Negative', n: 9 },
-  { policyGroup: 'Housing', outcome: 'None', link: 'Positive', n: 37 },
   {
     policyGroup: 'Housing',
     outcome: 'Poisoning / Overdoses',
@@ -295,6 +377,8 @@
   },
   { policyGroup: 'Housing', outcome: 'Suicide', link: 'Negative', n: 1 },
   { policyGroup: 'Housing', outcome: 'Suicide', link: 'Positive', n: 3 },
+  { policyGroup: 'Income', outcome: 'All', link: 'Negative', n: 13 },
+  { policyGroup: 'Income', outcome: 'All', link: 'Positive', n: 43 },
   {
     policyGroup: 'Income',
     outcome: 'Chronic diseases',
@@ -351,8 +435,6 @@
     link: 'Positive',
     n: 5,
   },
-  { policyGroup: 'Income', outcome: 'None', link: 'Negative', n: 13 },
-  { policyGroup: 'Income', outcome: 'None', link: 'Positive', n: 43 },
   {
     policyGroup: 'Income',
     outcome: 'Poisoning / Overdoses',
@@ -385,6 +467,8 @@
   },
   { policyGroup: 'Income', outcome: 'Suicide', link: 'Negative', n: 3 },
   { policyGroup: 'Income', outcome: 'Suicide', link: 'Positive', n: 4 },
+  { policyGroup: 'Insurance', outcome: 'All', link: 'Negative', n: 2 },
+  { policyGroup: 'Insurance', outcome: 'All', link: 'Positive', n: 9 },
   {
     policyGroup: 'Insurance',
     outcome: 'Chronic diseases',
@@ -421,8 +505,6 @@
     link: 'Positive',
     n: 1,
   },
-  { policyGroup: 'Insurance', outcome: 'None', link: 'Negative', n: 2 },
-  { policyGroup: 'Insurance', outcome: 'None', link: 'Positive', n: 9 },
   {
     policyGroup: 'Insurance',
     outcome: 'Substance use disorders',
@@ -430,88 +512,8 @@
     n: 1,
   },
   { policyGroup: 'Insurance', outcome: 'Suicide', link: 'Negative', n: 1 },
-  { policyGroup: 'None', outcome: 'Chronic diseases', link: 'Negative', n: 9 },
-  { policyGroup: 'None', outcome: 'Chronic diseases', link: 'Positive', n: 22 },
-  { policyGroup: 'None', outcome: 'Homicide', link: 'Negative', n: 6 },
-  { policyGroup: 'None', outcome: 'Homicide', link: 'Positive', n: 11 },
-  { policyGroup: 'None', outcome: 'Infant Mortality', link: 'Negative', n: 4 },
-  { policyGroup: 'None', outcome: 'Infant Mortality', link: 'Positive', n: 17 },
-  {
-    policyGroup: 'None',
-    outcome: 'Injuries (Unintentional)',
-    link: 'Negative',
-    n: 7,
-  },
-  {
-    policyGroup: 'None',
-    outcome: 'Injuries (Unintentional)',
-    link: 'Positive',
-    n: 17,
-  },
-  {
-    policyGroup: 'None',
-    outcome: 'Life Expectancy / Premature Mortality',
-    link: 'Negative',
-    n: 9,
-  },
-  {
-    policyGroup: 'None',
-    outcome: 'Life Expectancy / Premature Mortality',
-    link: 'Positive',
-    n: 10,
-  },
-  {
-    policyGroup: 'None',
-    outcome: 'Mental health conditions',
-    link: 'Negative',
-    n: 5,
-  },
-  {
-    policyGroup: 'None',
-    outcome: 'Mental health conditions',
-    link: 'Positive',
-    n: 16,
-  },
-  { policyGroup: 'None', outcome: 'None', link: 'Negative', n: 71 },
-  { policyGroup: 'None', outcome: 'None', link: 'Positive', n: 152 },
-  {
-    policyGroup: 'None',
-    outcome: 'Poisoning / Overdoses',
-    link: 'Negative',
-    n: 4,
-  },
-  {
-    policyGroup: 'None',
-    outcome: 'Poisoning / Overdoses',
-    link: 'Positive',
-    n: 16,
-  },
-  {
-    policyGroup: 'None',
-    outcome: 'Sexually transmitted infections',
-    link: 'Negative',
-    n: 5,
-  },
-  {
-    policyGroup: 'None',
-    outcome: 'Sexually transmitted infections',
-    link: 'Positive',
-    n: 13,
-  },
-  {
-    policyGroup: 'None',
-    outcome: 'Substance use disorders',
-    link: 'Negative',
-    n: 6,
-  },
-  {
-    policyGroup: 'None',
-    outcome: 'Substance use disorders',
-    link: 'Positive',
-    n: 15,
-  },
-  { policyGroup: 'None', outcome: 'Suicide', link: 'Negative', n: 16 },
-  { policyGroup: 'None', outcome: 'Suicide', link: 'Positive', n: 15 },
+  { policyGroup: 'Tax', outcome: 'All', link: 'Negative', n: 14 },
+  { policyGroup: 'Tax', outcome: 'All', link: 'Positive', n: 19 },
   { policyGroup: 'Tax', outcome: 'Chronic diseases', link: 'Negative', n: 3 },
   { policyGroup: 'Tax', outcome: 'Chronic diseases', link: 'Positive', n: 2 },
   { policyGroup: 'Tax', outcome: 'Homicide', link: 'Positive', n: 1 },
@@ -546,8 +548,6 @@
     link: 'Positive',
     n: 2,
   },
-  { policyGroup: 'Tax', outcome: 'None', link: 'Negative', n: 14 },
-  { policyGroup: 'Tax', outcome: 'None', link: 'Positive', n: 19 },
   {
     policyGroup: 'Tax',
     outcome: 'Poisoning / Overdoses',
@@ -590,3 +590,22 @@
  const dataDonutLinksFill = [
   { Negative: '#d73027', Positive: '#1a9850' },
 ][0];
+
+
+const id = 'donutLinks';
+// Counter: https://codepen.io/jshakes/pen/KKpjdYv
+// How long you want the animation to take, in ms
+ const animationDuration = 1000;
+// Calculate how long each ‘frame’ should last if we want to update the animation 60 times per second
+ const frameDuration = 1000 / 200;
+// Use that to calculate how many frames we need to complete the animation
+ const totalFrames = Math.round(animationDuration / frameDuration);
+// An ease-out function that slows the count as it progresses
+ const easeOutQuad = (t) => t * (2 - t);
+const target = 77;
+
+const el = document.querySelector(`#${id}Counter`);
+let startingNumber = parseInt(el.innerHTML, 10);
+const targetNumber = target;
+const frame = Math.abs(targetNumber - startingNumber);
+var frameCounter = frame;

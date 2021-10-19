@@ -8,6 +8,7 @@ import {
   consoleLogGlobals,
   cleanStr,
   updateOpacityInactivePoints,
+  updateLinksDonut
 } from './donuts_util.js';
 import { fitlerRowElement, placeHolder } from './dounts_elements.js';
 import { resetFilterRow } from './donuts_handleClearAll.js';
@@ -54,6 +55,7 @@ const handleClearBtn = function () {
   consoleLogGlobals();
   updateFilterRowTextDeselect();
   updateOpacityInactivePoints(id, 'highcharts-point', 1);
+  updateLinksDonut();
 };
 
 const insertNewFilterTab = function (thiss, id) {

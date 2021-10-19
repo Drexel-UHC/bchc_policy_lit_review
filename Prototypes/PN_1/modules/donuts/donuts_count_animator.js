@@ -2,7 +2,7 @@
 // How long you want the animation to take, in ms
  const animationDuration = 1000;
 // Calculate how long each ‘frame’ should last if we want to update the animation 60 times per second
- const frameDuration = 1000 / 60;
+ const frameDuration = 1000 / 200;
 // Use that to calculate how many frames we need to complete the animation
  const totalFrames = Math.round(animationDuration / frameDuration);
 // An ease-out function that slows the count as it progresses

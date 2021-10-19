@@ -7,6 +7,7 @@ import {
   deselectDonut,
   updateGlobalVariables,
   updateOpacityInactivePoints,
+  updateLinksDonut
 } from './donuts_util.js';
 
 export const handleClearAll = function () {
@@ -20,6 +21,8 @@ export const handleClearAll = function () {
   updateOpacityInactivePoints('donutPolicy','highcharts-point', 1);
   updateOpacityInactivePoints('donutOutcomes', 'highcharts-point', 1);
   console.log(`Global Vars: ${window.policy}, ${window.outcome}`);
+  updateLinksDonut();
+
 };
 
 export const resetFilterRow = function () {

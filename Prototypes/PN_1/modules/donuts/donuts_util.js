@@ -2,9 +2,14 @@ import { dataDonutPolicy } from '../data/data_donut_policy.js';
 import {
   dataDonutLinksDefault,
   dataDonutLinks,
+  dataDonutLinksTotal,
 } from '../data/data_donut_links.js';
 import { dataDonutOutcomes } from '../data/data_donut_outcomes.js';
 import * as donuts from './donuts.js';
+import { animateCountTo } from './donuts_count_animator.js';
+
+
+
 export const numPolicies = dataDonutPolicy.length;
 export const numOutcomes = dataDonutOutcomes.length;
 
@@ -59,36 +64,29 @@ export const updateOpacityInactivePoints = function (id, selector, opacity) {
 };
 
 export const updateLinksDonut = function () {
-  console.log(`TRIGGER LINKS UPDATE: ${window.policy} + ${window.outcome}`);
-  const filteredData = filterLinks(dataDonutLinks);
-  const negativeLinks = reduceLinks(
-    filteredData.filter((row) => row.link === 'Negative')
-  );
-  const positiveLinks = reduceLinks(
-    filteredData.filter((row) => row.link === 'Positive')
-  );
-  const nullLinks = totalLinks- positiveLinks - negativeLinks;
-  console.log(`pos/neg/null links: ${positiveLinks} / ${negativeLinks} /${nullLinks}`);
-};
-
-const filterLinks = (data) => {
-  if (window.policy === 'All' && window.outcome === 'All') {
-    return data;
-  } else if (window.policy != 'All' && window.outcome === 'All') {
-    return data.filter((row) => row.policyGroup === window.policy);
-  } else if (window.policy === 'All' && window.outcome != 'All') {
-    return data.filter((row) => row.outcome === window.outcome);
-  } else {
-    return data
+  /// Get Number of Links based on global variables
+  const filteredData = dataDonutLinks
       .filter((row) => row.policyGroup === window.policy)
       .filter((row) => row.outcome === window.outcome);
-  }
+  const negativeLinks = reduceLinks(filteredData, 'Negative');
+  const positiveLinks = reduceLinks(filteredData, 'Positive');
+  const totalLinks = positiveLinks + negativeLinks;
+  const nullLinks = dataDonutLinksTotal - positiveLinks - negativeLinks;
+  console.log(dataDonutLinksTotal);
+  console.log(
+    `pos/neg/total/null links: ${positiveLinks} / ${negativeLinks} /${totalLinks}/${nullLinks}`
+  );
+  /// Update Link Donut Title 
+  animateCountTo('donutLinks', totalLinks);
 };
 
-const reduceLinks = (o) => {
-  return Object.keys(o).reduce(function (previous, key) {
-    return previous + o[key].n;
+
+
+const reduceLinks = (filteredData, direction) => {
+  const data = filteredData.filter((row) => row.link === direction);
+  return Object.keys(data).reduce(function (previous, key) {
+    return previous + data[key].n;
   }, 0);
 };
 
-const totalLinks = reduceLinks(dataDonutLinks);
+ 
