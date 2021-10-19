@@ -1,7 +1,9 @@
  const dataDonutLinksDefault = [
   ['Negative', 71],
-  ['Positive', 152],
+   ['Positive', 152],
+   ['NA',0]
 ];
+
  const dataDonutLinks = [
   { policyGroup: 'All', outcome: 'All', link: 'Negative', n: 71 },
   { policyGroup: 'All', outcome: 'All', link: 'Positive', n: 152 },

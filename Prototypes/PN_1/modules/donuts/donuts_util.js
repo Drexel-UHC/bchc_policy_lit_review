@@ -78,6 +78,14 @@ export const updateLinksDonut = function () {
   );
   /// Update Link Donut Title 
   animateCountTo('donutLinks', totalLinks);
+
+  /// Redraw Link Donut 
+  const newDonutLinksData = [
+    ['Negative', negativeLinks],
+    ['Positive', positiveLinks],
+    ['NA', nullLinks],
+  ];
+   donuts.donutLinks.series[0].update({ data: newDonutLinksData });
 };
 
 

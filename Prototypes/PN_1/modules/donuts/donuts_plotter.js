@@ -91,7 +91,7 @@ export function makeDonutHC(id, data, fill) {
       },
     },
     tooltip: {
-      useHTML: true,
+      useHTML: true, 
       outside: true,
       backgroundColor: '{point.color}',
       borderColor: '{point.color}',

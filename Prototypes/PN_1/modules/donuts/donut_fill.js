@@ -6,5 +6,5 @@ export const fillPolicy = [
   '#7FCDBB',
   '#C7E9B4',
 ];
-export const fillLinks = ['#d73027', '#1a9850'];
+export const fillLinks = ['#d73027', '#1a9850', '	#989898'];
 
