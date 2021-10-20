@@ -7,8 +7,12 @@ import {
   updateGlobalVariables,
   consoleLogGlobals,
   updateOpacityInactivePoints,
-  updateLinksDonut
+  updateLinksDonut,
+  updateOutcomesDonut
 } from './donuts_util.js';
+import { updateGrid } from '../grid/grid.js';
+
+
 
 export function makeDonutHC(id, data, fill) {
   var chart = new Highcharts.Chart({
@@ -47,7 +51,20 @@ export function makeDonutHC(id, data, fill) {
               const selectEvent = !event.point.selected;
               const deselectEvent = !selectEvent;
               if (selectEvent) {
-                if (id !== 'donutLinks') {
+                if (id === 'donutPolicy') {
+                  animateCountTo(id, 1);
+                  renderFilterRow(this, id);
+                  updateGlobalVariables(id, this.name);
+                  updateOpacityInactivePoints(
+                    id,
+                    'highcharts-point-inactive',
+                    0.4
+                  );
+                  consoleLogGlobals();(id === 'donutPolicy')
+                  updateLinksDonut();
+                  updateOutcomesDonut()
+                  updateGrid();
+                } else if (id === 'donutOutcomes') {
                   animateCountTo(id, 1);
                   renderFilterRow(this, id);
                   updateGlobalVariables(id, this.name);
@@ -58,6 +75,9 @@ export function makeDonutHC(id, data, fill) {
                   );
                   consoleLogGlobals();
                   updateLinksDonut();
+                  // updatePolicyDonut();
+                  updateGrid();
+
                 }
               } else if (deselectEvent) {
                 animateCountTo(id, data.length);
@@ -66,6 +86,7 @@ export function makeDonutHC(id, data, fill) {
                 updateOpacityInactivePoints(id, 'highcharts-point-inactive', 1);
                 consoleLogGlobals();
                 updateLinksDonut();
+                updateGrid();
               }
             },
           },

@@ -9,6 +9,7 @@ import {
   updateOpacityInactivePoints,
   updateLinksDonut
 } from './donuts_util.js';
+import { updateGrid } from '../grid/grid.js';
 
 export const handleClearAll = function () {
   deselectDonut('donutPolicy');
@@ -22,6 +23,7 @@ export const handleClearAll = function () {
   updateOpacityInactivePoints('donutOutcomes', 'highcharts-point', 1);
   console.log(`Global Vars: ${window.policy}, ${window.outcome}`);
   updateLinksDonut();
+  updateGrid('filter');
 
 };
 

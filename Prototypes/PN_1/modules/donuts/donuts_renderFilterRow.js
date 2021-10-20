@@ -12,6 +12,7 @@ import {
 } from './donuts_util.js';
 import { fitlerRowElement, placeHolder } from './dounts_elements.js';
 import { resetFilterRow } from './donuts_handleClearAll.js';
+import { updateGrid } from '../grid/grid.js';
 
 export const renderFilterRow = function (thiss, id) {
   deleteExistingFilterTab(id);
@@ -56,6 +57,7 @@ const handleClearBtn = function () {
   updateFilterRowTextDeselect();
   updateOpacityInactivePoints(id, 'highcharts-point', 1);
   updateLinksDonut();
+  updateGrid('filter');
 };
 
 const insertNewFilterTab = function (thiss, id) {

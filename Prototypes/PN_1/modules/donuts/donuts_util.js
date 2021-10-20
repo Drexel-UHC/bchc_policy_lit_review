@@ -2,13 +2,13 @@ import { dataDonutPolicy } from '../data/data_donut_policy.js';
 import {
   dataDonutLinksDefault,
   dataDonutLinks,
-  dataDonutLinksTotal,
+  dataDonutLinksTotal
 } from '../data/data_donut_links.js';
 import { dataDonutOutcomes } from '../data/data_donut_outcomes.js';
 import * as donuts from './donuts.js';
 import { animateCountTo } from './donuts_count_animator.js';
-
-
+import { dataGrid } from '../data/data_grid.js';
+import { updateGrid } from '../grid/grid.js';
 
 export const numPolicies = dataDonutPolicy.length;
 export const numOutcomes = dataDonutOutcomes.length;
@@ -63,6 +63,23 @@ export const updateOpacityInactivePoints = function (id, selector, opacity) {
   });
 };
 
+
+
+
+export const updateOutcomesDonut = function (){
+  const filteredData = dataGrid.filter(
+    (row) => row.policy_group === window.policy
+  );
+  // console.table(filteredData);
+  const allPolicies = filteredData.map(row => { return row.policy })
+  const policies = new Set(allPolicies);
+  const nPolicies = policies.size;
+  // console.log(policies);
+
+  /// Update  Title
+  animateCountTo('donutOutcomes', nPolicies);
+}
+
 export const updateLinksDonut = function () {
   /// Get Number of Links based on global variables
   const filteredData = dataDonutLinks
@@ -72,10 +89,10 @@ export const updateLinksDonut = function () {
   const positiveLinks = reduceLinks(filteredData, 'Positive');
   const totalLinks = positiveLinks + negativeLinks;
   const nullLinks = dataDonutLinksTotal - positiveLinks - negativeLinks;
-  console.log(dataDonutLinksTotal);
-  console.log(
-    `pos/neg/total/null links: ${positiveLinks} / ${negativeLinks} /${totalLinks}/${nullLinks}`
-  );
+  // console.log(dataDonutLinksTotal);
+  // console.log(
+  //   `pos/neg/total/null links: ${positiveLinks} / ${negativeLinks} /${totalLinks}/${nullLinks}`
+  // );
   /// Update Link Donut Title 
   animateCountTo('donutLinks', totalLinks);
 
