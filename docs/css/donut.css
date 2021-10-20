@@ -26,3 +26,17 @@
   font-size: 15px;
   font-weight: bolder;
 }
+
+/* Highcharts */
+.highcharts-point-inactive {
+  opacity: 1;
+}
+
+.highcharts-point-select {
+  stroke-width: 5;
+  opacity: 1;
+}
+
+.highcharts-point-normal {
+  opacity: 1;
+}

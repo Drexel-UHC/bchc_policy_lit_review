@@ -1,21 +1,19 @@
 // Counter: https://codepen.io/jshakes/pen/KKpjdYv
 // How long you want the animation to take, in ms
-export const animationDuration = 1000;
+ const animationDuration = 1000;
 // Calculate how long each ‘frame’ should last if we want to update the animation 60 times per second
-export const frameDuration = 1000 / 60;
+ const frameDuration = 1000 / 200;
 // Use that to calculate how many frames we need to complete the animation
-export const totalFrames = Math.round(animationDuration / frameDuration);
+ const totalFrames = Math.round(animationDuration / frameDuration);
 // An ease-out function that slows the count as it progresses
-export const easeOutQuad = (t) => t * (2 - t);
+ const easeOutQuad = (t) => t * (2 - t);
 
 // The animation function, which takes an Element
 export const animateCountTo = function (id, target) {
   const el = document.querySelector(`#${id}Counter`);
   let startingNumber = parseInt(el.innerHTML, 10);
   const targetNumber = target;
-  console.log(el);
-  console.log(startingNumber);
-  console.log(targetNumber);
+
   const frame = Math.abs(targetNumber - startingNumber);
   var frameCounter = frame;
   if (targetNumber > startingNumber) {

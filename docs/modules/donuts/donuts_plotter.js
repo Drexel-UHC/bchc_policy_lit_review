@@ -1,30 +1,18 @@
+import { renderFilterRow } from './donuts_renderFilterRow.js';
+import { handleClearAll } from './donuts_handleClearAll.js';
+import { deselectFilterRow } from './donuts_handleDeselect.js';
+import { animateCountTo } from './donuts_count_animator.js';
 import {
-  renderFilterRow,
-  clearFilterRow,
-  clearAllFilters,
-  fitlerRowElement,
-  placeHolder,
-} from './donuts_render_filterRow.js';
-import {
-  animationDuration,
-  frameDuration,
-  totalFrames,
-  animateCountTo,
-} from './donuts_count_animator.js';
+  makeTitle,
+  updateGlobalVariables,
+  consoleLogGlobals,
+  updateOpacityInactivePoints,
+  updateLinksDonut,
+  updateOutcomesDonut
+} from './donuts_util.js';
+import { updateGrid } from '../grid/grid.js';
 
-const linkReducer = (total, i) => total + i[1];
-const makeTitle = function (id, data) {
-  if (id == 'donutPolicy') {
-    return `<div><span class="donutTitleBigFont" id = "${id}Counter">${data.length}</span><br><span class = "donutTitleSmallFont">Policies</span> </div>`;
-  } else if (id == 'donutLinks') {
-    return `<div><span class="donutTitleBigFont" id = "${id}Counter">${data.reduce(
-      linkReducer,
-      0
-    )}</span><br><span class = "donutTitleSmallFont">Links</span> </div>`;
-  } else {
-    return `<div><span class="donutTitleBigFont" id = "${id}Counter">${data.length}</span><br><span class = "donutTitleSmallFont">Outcomes</span> </div>`;
-  }
-};
+
 
 export function makeDonutHC(id, data, fill) {
   var chart = new Highcharts.Chart({
@@ -48,25 +36,9 @@ export function makeDonutHC(id, data, fill) {
     },
     // Plot options
     plotOptions: {
-      pie: {},
-    },
-    tooltip: {
-      useHTML: true,
-      outside: true,
-      backgroundColor: '{point.color}',
-      borderColor: '{point.color}',
-      borderWith: 0,
-      padding: 0,
-      headerFormat: '',
-      pointFormat:
-        '<div class="donutTooltip" style ="background-color: {point.color};"><i class="fas fa-money-check-alt donutTooltipIcon"></i><div class = "donutTooltipName">{point.name}</div><div > <span class="donutTooltipCount">{point.y}</span> links</div> ',
-    },
-    // Series Options
-    series: [
-      {
-        data: data,
-        allowPointSelect: id !== 'donutLinks',
+      pie: {
         borderColor: null,
+        allowPointSelect: id !== 'donutLinks',
         cursor: 'pointer',
         colors: fill,
         innerSize: '80%',
@@ -76,17 +48,45 @@ export function makeDonutHC(id, data, fill) {
         point: {
           events: {
             click: function () {
-              console.log(event.point);
-              if (!event.point.selected) {
-                // Select: If we clicked on a point that was not previously clicked
-                animateCountTo(id, 1);
-                if (id !== 'donutLinks') {
+              const selectEvent = !event.point.selected;
+              const deselectEvent = !selectEvent;
+              if (selectEvent) {
+                if (id === 'donutPolicy') {
+                  animateCountTo(id, 1);
                   renderFilterRow(this, id);
+                  updateGlobalVariables(id, this.name);
+                  updateOpacityInactivePoints(
+                    id,
+                    'highcharts-point-inactive',
+                    0.4
+                  );
+                  consoleLogGlobals();(id === 'donutPolicy')
+                  updateLinksDonut();
+                  updateOutcomesDonut()
+                  updateGrid();
+                } else if (id === 'donutOutcomes') {
+                  animateCountTo(id, 1);
+                  renderFilterRow(this, id);
+                  updateGlobalVariables(id, this.name);
+                  updateOpacityInactivePoints(
+                    id,
+                    'highcharts-point-inactive',
+                    0.4
+                  );
+                  consoleLogGlobals();
+                  updateLinksDonut();
+                  // updatePolicyDonut();
+                  updateGrid();
+
                 }
-              } else {
-                // Unselect: If we clicked on a point that was already selected
+              } else if (deselectEvent) {
                 animateCountTo(id, data.length);
-                clearFilterRow(id);
+                deselectFilterRow(id);
+                updateGlobalVariables(id, 'All');
+                updateOpacityInactivePoints(id, 'highcharts-point-inactive', 1);
+                consoleLogGlobals();
+                updateLinksDonut();
+                updateGrid();
               }
             },
           },
@@ -102,10 +102,32 @@ export function makeDonutHC(id, data, fill) {
               size: 12,
             },
           },
+          select: {
+            halo: {
+              opacity: 1,
+              size: 30,
+            },
+          },
         },
+      },
+    },
+    tooltip: {
+      useHTML: true, 
+      outside: true,
+      backgroundColor: '{point.color}',
+      borderColor: '{point.color}',
+      borderWith: 0,
+      padding: 0,
+      headerFormat: '',
+      pointFormat:
+        '<div class="donutTooltip" style ="background-color: {point.color};"><i class="fas fa-money-check-alt donutTooltipIcon"></i><div class = "donutTooltipName">{point.name}</div><div > <span class="donutTooltipCount">{point.y}</span> links</div> ',
+    },
+    // Series Options
+    series: [
+      {
+        data: data,
       },
     ],
   });
-
   return chart;
 }

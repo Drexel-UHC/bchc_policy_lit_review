@@ -13,7 +13,7 @@
 .BCHC-header {
   display: grid;
   grid-auto-rows: auto auto;
-  background: url('/img/home-hero-bg.jpg');
+  background: url('../img/home-hero-bg.jpg');
   background-size: cover;
   background-position: 50%;
   padding-bottom: 30px;
