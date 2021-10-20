@@ -1,1 +1,0 @@
-export const dataDonutPolicy =  [["Income",56],["Discrimination",47],["Housing",46],["Tax",33],["Education and Childcare",30],["Insurance",11]];export const dataDonutPolicyFill =  [{"Income":"#0C2C84","Discrimination":"#225EA8","Housing":"#1D91C0","Tax":"#41B6C4","Education and Childcare":"#7FCDBB","Insurance":"#C7E9B4"}][0]; 
